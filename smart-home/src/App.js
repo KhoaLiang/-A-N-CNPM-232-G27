@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
 // Import your page components
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
+import Dashboard from './pages/Dashboard';
+import SensorPage from './pages/SensorPage';
+import ElectricityUsagePage from './pages/ElectricityUsagePage';
+import SettingsPage from './pages/SettingsPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -13,17 +16,29 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Dashboard</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/sensor">Sensor</Link>
+            </li>
+            <li>
+              <Link to="/electricity-usage">Electricity Usage</Link>
+            </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
+            <li>
+              <Link to="/login">Login/Logout</Link>
             </li>
           </ul>
         </nav>
 
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/sensor" element={<SensorPage />} />
+          <Route path="/electricity-usage" element={<ElectricityUsagePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </Router>

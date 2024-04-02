@@ -1,12 +1,12 @@
 import React from 'react';
 
-const HomePage = () => {
+const SettingsPage = () => {
     return (
         <div>
             <h1>Welcome to our Smart Home App!</h1>
-            <p>Get ready to experience the future of home automation.</p>
+            <p>This is where you edit your setting</p>
         </div>
     );
 };
 
-export default HomePage;
+export default SettingsPage;
