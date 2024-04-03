@@ -6,26 +6,23 @@ const deviceSchema = new Schema(
     id: {
       type: Number,
       required: true,
+      unique: true,
     },
     name: {
       type: String,
-      required: true,
+      required: [true, "Please tell us your device's name!"],
     },
     status: {
       type: Boolean,
-      required: true,
+      enum: ['true', 'false'],
+      default: 'false',
     },
     type: {
       type: String,
-      required: true,
+      required: [true, "Please tell us your device's type!"],
     },
     roomId: {
       type: Number,
-      required: true,
-    },
-    capacity: {
-      type: Number,
-      default: 36,
       required: true,
     },
     duration: {

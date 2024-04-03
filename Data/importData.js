@@ -3,9 +3,8 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
 const Device = require('./../Models/deviceModel')
-const Port = require('./../Models/portsModel')
 const Room = require('./../Models/roomModel')
-const Statistic = require('./../Models/statisticModel')
+const Admin = require('./../Models/adminModel')
 const User = require('./../Models/userModel')
 
 dotenv.config({ path: './config.env' })
@@ -24,20 +23,16 @@ mongoose
 const devices = JSON.parse(
   fs.readFileSync(`${__dirname}/devices.json`, 'utf-8')
 )
-const ports = JSON.parse(fs.readFileSync(`${__dirname}/ports.json`, 'utf-8'))
 const rooms = JSON.parse(fs.readFileSync(`${__dirname}/rooms.json`, 'utf-8'))
-const statistics = JSON.parse(
-  fs.readFileSync(`${__dirname}/statistics.json`, 'utf-8')
-)
+const admins = JSON.parse(fs.readFileSync(`${__dirname}/admins.json`, 'utf-8'))
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'))
 
 // IMPORT DATA INTO DB
 const importData = async () => {
   try {
     await Device.create(devices)
-    await Port.create(ports)
     await Room.create(rooms)
-    await Statistic.create(statistics)
+    await Admin.create(admins)
     await User.create(users)
     console.log('Data successfully loaded!')
   } catch (err) {
@@ -50,9 +45,8 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await Device.deleteMany()
-    await Port.deleteMany()
     await Room.deleteMany()
-    await Statistic.deleteMany()
+    await Admin.deleteMany()
     await User.deleteMany()
     console.log('Data successfully deleted!')
   } catch (err) {
