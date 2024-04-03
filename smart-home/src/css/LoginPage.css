@@ -1,0 +1,16 @@
+.form-control{
+    background-color: #EFEEEE;
+}
+.rounder-border{
+    border-radius: 20px;
+}
+.logo{
+    width: 100px;
+    height: 100px;
+}
+.login-form{
+    background-color: #FCFAFA;
+}
+.container{
+      text-align: center;
+}

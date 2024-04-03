@@ -1,0 +1,25 @@
+/* .App{
+  background-image: url('../src/img/background.jpg');
+  background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-opacity: 0.5;
+} */
+.App {
+    position: relative;
+}
+
+.App::before {
+    content: "";
+    background-image: url('../src/img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
