@@ -22,4 +22,25 @@
     bottom: 0;
     left: 0;
     z-index: -1;
+}@media (min-width: 576px) { 
+    .nav-elem{
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    text-decoration: none;
+    margin: 0 10px;
+    }
+ }
+
+@media (min-width: 1200px) { 
+    .nav-elem{
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    text-decoration: none;
+    margin: 0 10px;
+    }
+}
+
+.logo-nav{
+    width: 100px;
+    height: 100px;
 }

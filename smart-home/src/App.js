@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import logo from './img/Logo.png';
+import './App.css';
 
 // Import your page components
 import Dashboard from './pages/Dashboard';
@@ -21,19 +22,19 @@ const Header = () => {
     // } 
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
+            <Link to="/"><img src={logo} alt="" className='logo-nav' /></Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" ><Link to="/">Dashboard</Link></a>
-                <a class="nav-link" ><Link to="/sensor">Sensor</Link></a>
-                <a class="nav-link" ><Link to="/electricity-usage">Electricity Usage</Link></a>
-                <a class="nav-link" ><Link to="/settings">Settings</Link></a>
-                <a class="nav-link" ><Link to="/login">Login/Logout</Link></a>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div className="navbar-nav ms-auto">
+                <Link to="/" className="nav-link px-5 nav-elem">Dashboard</Link>
+                <Link to="/sensor" className="nav-link px-5 nav-elem">Sensor</Link>
+                <Link to="/electricity-usage" className="nav-link px-5 nav-elem">Electricity Usage</Link>
+                <Link to="/settings" className="nav-link px-5 nav-elem">Settings</Link>
+                <Link to="/login" className="nav-link px-5  nav-elem">Login/Logout</Link>
               </div>
             </div>
           </div>
@@ -50,21 +51,10 @@ const Footer = () => {
     }
 
     return (
-        <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Pricing</a>
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </div>
+        <nav className="navbar fixed-bottom navbar-expand-lg navbar-light bg-light p-3">
+            <div className="container-fluid">
+                <p className="text-muted m-auto">Copyright 2024, Ho Chi Minh University of technology</p>
             </div>
-          </div>
         </nav>
     );
 };

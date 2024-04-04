@@ -8,7 +8,7 @@ const LoginPage = () => {
         
             <div className='container vh-100 align-items-center'>
                 <div className='row justify-content-center align-items-center d-flex vh-100'>
-                    <form className='col-4 border border-dark p-3 rounder-border login-form'>
+                    <form className='col-10 col-md-6 col-lg-4 border border-dark p-3 rounder-border login-form'>
                         <img src={logo} alt="" className='logo'/>
                         <div className='form-group m-3'>
                             <input type='text' className='form-control' id='username' placeholder='Enter Username'/>
