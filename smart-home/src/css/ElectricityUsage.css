@@ -1,0 +1,57 @@
+.room {
+  margin: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 950px;
+  min-height: 400px;
+}
+
+.guest_room {
+  display: flex;
+  height: 150px;
+  width: 500px;
+}
+
+.bed_room {
+  display: flex;
+  height: 150px;
+  width: 500px;
+}
+
+.dining_room {
+  display: flex;
+  height: 150px;
+  width: 500px;
+}
+
+.bad_room {
+  display: flex;
+  height: 150px;
+  width: 500px;
+}
+img {
+  height: 100px;
+}
+.ma {
+  height: 100px;
+}
+.costandkwh {
+  margin: auto;
+  max-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cost {
+  display: flex;
+  height: 150px;
+  width: 500px;
+}
+.kwh {
+  display: flex;
+  height: 150px;
+  width: 500px;
+}
