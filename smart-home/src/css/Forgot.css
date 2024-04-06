@@ -1,0 +1,11 @@
+.logoutalldevice {
+    margin: 0 5px;
+}
+#logoutall {
+    width: 13px;
+    margin: 0 2px;
+}
+
+.btn-cancel {
+    background: grey;
+}

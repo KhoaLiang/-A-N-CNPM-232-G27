@@ -11,10 +11,11 @@ import SensorPage from './pages/SensorPage';
 import ElectricityUsagePage from './pages/ElectricityUsagePage';
 import SettingsPage from './pages/SettingsPage';
 import LoginPage from './pages/LoginPage';
+import ForgotPage from './pages/Forgot';
 
 const Header = () => {
-    const location = useLocation();
-    const isLoginPage = location.pathname === '/login';
+    // const location = useLocation();
+    // const isLoginPage = location.pathname === '/login';
 
     //uncomment this when it's time to implement the login page properly
     // if (isLoginPage) {
@@ -89,6 +90,7 @@ function App() {
           <Route path="/electricity-usage" element={<ElectricityUsagePage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot" element={<ForgotPage />} />
         </Routes>
         <Footer />
       </div>

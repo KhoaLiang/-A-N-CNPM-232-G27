@@ -1,0 +1,25 @@
+.content {
+  display: flex;
+}
+
+.newrow {
+    margin-top: 30px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.imgchange button {
+  position: absolute;
+  width: 167px;
+  height: 72px;
+  left: 308px;
+  top: 443px;
+}
+
+.imgchange img {
+  position: absolute;
+  width: 168px;
+  height: 171px;
+  left: 308px;
+  top: 238px;
+}

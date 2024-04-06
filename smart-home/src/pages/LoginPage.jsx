@@ -17,7 +17,7 @@ const LoginPage = () => {
                             <input type='password' className='form-control' id='password' placeholder='Enter Password'/>
                         </div>
                         <button type='submit' className='btn btn-primary'>Login</button>
-                        <p className='text-center mt-3'><a href='#'>Forget password?</a></p>
+                        <p className='text-center mt-3'><a href='./forgot'>Forget password?</a></p>
                     </form>
                 </div>
             </div>

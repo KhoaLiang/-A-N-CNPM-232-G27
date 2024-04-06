@@ -7,7 +7,7 @@ const ElectricityUsagePage = () => {
   // Your code here
 
   return (
-    <div className="container">
+    <div className="container row justify-content-center align-items-center d-flex vh-150 ">
       <div className="room row">
         <div className="guest_room justify-content-left align-items-center col-6">
           <h1>20</h1>
