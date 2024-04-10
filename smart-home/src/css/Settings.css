@@ -1,5 +1,6 @@
 .content {
   display: flex;
+  top:40%;
 }
 
 .newrow {
@@ -8,18 +9,15 @@
   font-weight: 700;
 }
 
+.imgchange {
+  left: 20%;
+  margin-top: 5%;
+}
+
 .imgchange button {
-  position: absolute;
-  width: 167px;
-  height: 72px;
-  left: 308px;
-  top: 443px;
+  margin-top: 10px;
 }
 
 .imgchange img {
-  position: absolute;
-  width: 168px;
-  height: 171px;
-  left: 308px;
-  top: 238px;
+  height: 170px;
 }
