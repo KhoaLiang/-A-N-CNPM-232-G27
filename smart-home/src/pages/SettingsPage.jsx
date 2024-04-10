@@ -5,19 +5,21 @@ import panda from "../img/panda.png";
 const SettingsPage = () => {
   return (
     <div className="container">
-        <div class="container text-center">
-          <div class="row newrow justify-content-center border border-dark">
-            <div class="col column">PERSONAL INFO</div>
-            <div class="col column">PASSWORD</div>
-            <div class="col column">HOME</div>
-          </div>
+      <div class="container text-center">
+        <div class="row newrow justify-content-center border border-dark">
+          <div class="col column">PERSONAL INFO</div>
+          <div class="col column">PASSWORD</div>
+          <div class="col column">HOME</div>
         </div>
+      </div>
       <div className="content w-100">
         <div className="imgchange w-25">
+          <div className="image-person">
             <img src={panda} alt="panda" />
-            <button type="submit" className="btn btn-primary mx-1">
-              Update
-            </button>
+          </div>
+          <button type="submit" className="btn btn-primary mx-1">
+            Update
+          </button>
         </div>
         <div className="row justify-content-center align-items-start d-flex w-75 mt-5">
           <form className="col-lg-5 p-3">
