@@ -7,25 +7,6 @@ const router = express.Router()
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     Statistic:
- *       type: object
- *       required:
- *         - deviceId
- *         - data
- *       properties:
- *         deviceId:
- *           type: Number
- *         data:
- *           type: Array
- *       example:
- *         deviceId: 1
- *         data: Array
- */
-
-/**
- * @swagger
  * tags:
  *   name: Statistics
  */

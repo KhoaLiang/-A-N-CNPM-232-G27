@@ -5,6 +5,12 @@ const settingController = require('../Controller/settingController.js')
 
 const router = express.Router()
 
+/**
+ * @swagger
+ * tags:
+ *   name: Setting
+ */
+
 router.get('/', settingController.show)
 router.get('/offEnergy', settingController.offEnergy)
 router.post('/updateProfile', settingController.updateProfile)

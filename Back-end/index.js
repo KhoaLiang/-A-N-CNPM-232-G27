@@ -3,6 +3,7 @@ const { createServer } = require('node:http')
 const { join } = require('node:path')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const cors = require('cors')
 const dotenv = require('dotenv')
 const mqtt = require('mqtt')
 const swaggerUI = require('swagger-ui-express')
@@ -14,6 +15,7 @@ const homeRouter = require('./Routes/homeRoutes')
 const statisticRouter = require('./Routes/statisticRoutes')
 
 const app = express()
+app.use(cors())
 const port = 4000
 
 process.on('uncaughtException', (err) => {

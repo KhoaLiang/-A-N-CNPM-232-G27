@@ -3,6 +3,13 @@ const settingController = require('../Controller/settingController.js')
 const homeController = require('../Controller/homeController.js')
 
 const router = express.Router()
+
+/**
+ * @swagger
+ * tags:
+ *   name: Home
+ */
+
 router.get('/', homeController.show)
 
 router.get('/setting', settingController.show)
