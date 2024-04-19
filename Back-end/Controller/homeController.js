@@ -143,7 +143,7 @@ exports.addNewDevice = (req, res, next) => {
     .catch((err) => console.log(err))
 }
 
-exports.toggleDevice = (req, res, next) => {
+exports.toggleDevice = async (req, res, next) => {
   const { deviceId, deviceType, status } = req.body
   // Turn off
   if (status === 'false') {

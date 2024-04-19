@@ -30,7 +30,7 @@ app.use((req, res, next) => {
   next()
 })
 
-let DB = process.env.DATABASE
+let DB = `mongodb+srv://danghsnt134:danghsnt134@dacnpm.dlmovsa.mongodb.net/?retryWrites=true&w=majority&appName=DACNPM`
 mongoose
   .connect(DB, {
     useNewUrlParser: true,

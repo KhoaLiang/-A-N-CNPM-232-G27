@@ -10,7 +10,7 @@ const User = require('./../Models/userModel')
 
 dotenv.config({ path: './config.env' })
 
-const DB = process.env.DATABASE
+const DB = `mongodb+srv://danghsnt134:danghsnt134@dacnpm.dlmovsa.mongodb.net/?retryWrites=true&w=majority&appName=DACNPM`
 
 mongoose
   .connect(DB, {
@@ -32,6 +32,9 @@ const rooms = JSON.parse(fs.readFileSync(`${__dirname}/rooms.json`, 'utf-8'))
 //   fs.readFileSync(`${__dirname}/statistics.json`, 'utf-8')
 // )
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'))
+const statistics = JSON.parse(
+  fs.readFileSync(`${__dirname}/statistics.json`, 'utf-8')
+)
 
 // IMPORT DATA INTO DB
 const importData = async () => {
@@ -41,6 +44,7 @@ const importData = async () => {
     await Room.create(rooms)
     // await Statistic.create(statistics)
     await User.create(users)
+    await Statistic.create(statistics)
     console.log('Data successfully loaded!')
   } catch (err) {
     console.log(err)
