@@ -5,6 +5,7 @@ import { User } from '../Models/userModel.js'
 import { genId } from './Utils.js';
 import bcrypt from 'bcrypt';
 import env from 'dotenv';
+
 class userController {
     show = (req, res, next) => {
         res.render('partials/login', {
