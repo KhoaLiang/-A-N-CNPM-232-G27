@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const dotenv = require('dotenv')
 const mqtt = require('mqtt')
+const swaggerUI = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
 
 const settingRouter = require('./Routes/settingRoutes')
 const authRouter = require('./Routes/authRoutes')
@@ -40,6 +42,27 @@ mongoose
   })
   .then(() => console.log('DB connection successful!'))
 
+//SWAGGER
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'DADN-SmartHome',
+      version: '1.0.0',
+      description: 'SmartHome API',
+    },
+    servers: [
+      {
+        url: 'http://localhost:4000/',
+      },
+    ],
+  },
+  apis: ['./Routes/*.js'],
+}
+
+const specs = swaggerJsDoc(options)
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs))
 // ROUTES
 app.use('/', homeRouter)
 app.use('/auth', authRouter)

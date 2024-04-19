@@ -34,8 +34,8 @@ exports.show = async (req, res) => {
 }
 
 exports.getAllDevice = async (req, res, next) => {
-  const devices = Device.find()
-  const rooms = Room.find()
+  const devices = await Device.find()
+  const rooms = await Room.find()
   if (!devices || !rooms) {
     res.status(404).json({
       status: 404,
