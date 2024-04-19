@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "Dang1",
+    "email": "Dang1@gmail.com",
+    "password": "Dang@123",
+    "phone": "0987469347",
+    "address": "Quan 9, Thanh pho Ho Chi Minh"
+  },
+  {
+    "id": "2",
+    "name": "Dang2",
+    "email": "Dang2@gmail.com",
+    "password": "Dang@123",
+    "phone": "0987469347",
+    "address": "Quan 9, Thanh pho Ho Chi Minh"
+  }
+]
