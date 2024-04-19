@@ -11,6 +11,26 @@ const router = express.Router()
  *   name: Authentications
  */
 
+// /**
+//  * @swagger
+//  * /auth/login:
+//  *   get:
+//  *     summary: Show user loggedIn
+//  *     tags: [Authentications]
+//  *     requestBody:
+//  *       required: true
+//  *       content:
+//  *         application/json:
+//  *           schema:
+//  *             type: object
+//  *             properties:
+//  *               email:
+//  *                 type: string
+//  *     responses:
+//  *       200:
+//  *         description: Successful!
+//  */
+
 router.get('/login', userController.show)
 
 /**
@@ -32,7 +52,7 @@ router.get('/login', userController.show)
  *                 type: string
  *     responses:
  *       200:
- *         description: Login was successful
+ *         description: Update user successfully
  *       400:
  *         description: Please provide email and password!
  *       401:

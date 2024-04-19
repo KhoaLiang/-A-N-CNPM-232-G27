@@ -66,7 +66,7 @@ exports.changeAddress = (req, res, next) => {
       res.status(200).json({
         status: 200,
         data: result,
-        message: 'Update your adress successfully',
+        message: 'Update your address successfully',
       })
     })
     .catch((err) => console.log(err))
