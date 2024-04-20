@@ -5,7 +5,7 @@ const Port = require('../Models/portsModel.js')
 const User = require('../Models/userModel.js')
 const Stat = require('../Models/statisticModel.js')
 
-const { genID, updateStat } = require('./Utils.js')
+const { genId, updateStat } = require('./Utils.js')
 
 exports.show = async (req, res, next) => {
   const { room } = req.query
@@ -36,9 +36,8 @@ exports.show = async (req, res, next) => {
 
 exports.addNewRoom = (req, res, next) => {
   const roomName = req.body.name
-  const idd = genID()
   const newRoom = new Room({
-    id: idd,
+    id: genId(),
     name: roomName,
   })
   newRoom

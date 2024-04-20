@@ -20,6 +20,7 @@
     "mongoose": "^5.13.22",
     "mqtt": "^5.5.3",
     "nodemon": "^3.1.0",
+    "readable-stream": "^4.5.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   }
