@@ -36,8 +36,9 @@ exports.show = async (req, res, next) => {
 
 exports.addNewRoom = (req, res, next) => {
   const roomName = req.body.name
+  const idd = genID()
   const newRoom = new Room({
-    id: genID(),
+    id: idd,
     name: roomName,
   })
   newRoom
