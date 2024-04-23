@@ -8,10 +8,10 @@ const Stat = require('../Models/statisticModel.js')
 const { genId, updateStat } = require('./Utils.js')
 
 exports.show = async (req, res, next) => {
-  const { room } = req.query
+  const  room  = 'A'; //req.query
   const rooms = await Room.find({}, 'name id')
   let currentRoomId
-  if (room) {
+  if (room !== 'A') {
     for (let i = 0; i < rooms.length; i++) {
       if (rooms[i].name.toLowerCase().split(' ').join('-') === room) {
         currentRoomId = rooms[i].id
