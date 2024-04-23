@@ -5,7 +5,10 @@ export const signIn = async (formValue) => {
     method: "post",
     url: `http://localhost:4000/auth/login`,
     data: formValue,
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },
   });
   return res.data;
 };
