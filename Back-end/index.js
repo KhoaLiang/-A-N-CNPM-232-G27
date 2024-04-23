@@ -15,7 +15,7 @@ const homeRouter = require('./Routes/homeRoutes')
 const statisticRouter = require('./Routes/statisticRoutes')
 
 const app = express()
-app.use(cors())
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 const port = 4000
 
 process.on('uncaughtException', (err) => {
