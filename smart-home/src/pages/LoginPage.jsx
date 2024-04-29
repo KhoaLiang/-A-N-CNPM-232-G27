@@ -5,6 +5,12 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import '../css/LoginPage.css';
 import logo from '../img/Logo.png';
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+console.log("jwt value:", getCookie('jwt')); // logs the value of the 'jwt' cookie
 const LoginPage = () => {
     // ...
 
@@ -37,7 +43,9 @@ const LoginPage = () => {
                     </form>
                 </div>
             </div>
+            
     );
+    
 };
 
 export default LoginPage;

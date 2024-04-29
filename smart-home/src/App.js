@@ -35,7 +35,7 @@ const Header = () => {
                 <Link to="/sensor" className="nav-link px-5 nav-elem">Sensor</Link>
                 <Link to="/electricity-usage" className="nav-link px-5 nav-elem">Electricity Usage</Link>
                 <Link to="/settings" className="nav-link px-5 nav-elem">Settings</Link>
-                <Link to="/login" className="nav-link px-5  nav-elem">Login/Logout</Link>
+                <Link to="/login" className="nav-link px-5  nav-elem">Login</Link>
               </div>
             </div>
           </div>
