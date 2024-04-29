@@ -4,6 +4,8 @@ const Device = require('../Models/deviceModel.js')
 const User = require('../Models/userModel.js')
 const jwt = require('jsonwebtoken')
 
+// Test
+
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
