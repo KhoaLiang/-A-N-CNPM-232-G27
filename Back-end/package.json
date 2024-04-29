@@ -18,7 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^5.13.22",
-    "mqtt": "^5.5.3",
+    "mqtt": "^5.5.4",
     "nodemon": "^3.1.0",
     "readable-stream": "^4.5.2",
     "swagger-jsdoc": "^6.2.8",

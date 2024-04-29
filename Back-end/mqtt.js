@@ -29,7 +29,7 @@ client.on('message', (topic, message) => {
 })
 
 // Publish a message (optional)
-client.publish(`${AIO_USERNAME}/feeds/${AIO_FEED}`, 'Hello from MQTT client!')
+client.publish(`${AIO_USERNAME}/feeds/${AIO_FEED}`, `0`)
 
 // Handle errors
 client.on('error', (err) => {
