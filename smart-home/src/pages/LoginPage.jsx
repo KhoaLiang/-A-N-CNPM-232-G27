@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
-import { signIn } from '../api/userApi'; // replace with the actual path
+import { signIn } from '../api/userApi'; // signIn api
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import '../css/LoginPage.css';
 import logo from '../img/Logo.png';
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-console.log("jwt value:", getCookie('jwt')); // logs the value of the 'jwt' cookie
-const LoginPage = () => {
-    // ...
 
+const LoginPage = ({ setIsLoggedIn }) => {
+    // ...
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formValue = { email, password };
-    console.log(formValue); // check the form value
-    const data = await signIn(formValue);
-    console.log(data); // handle the response as needed
+        event.preventDefault();
+        const formValue = { email, password };
+        console.log(formValue); // check the form value
+        const data = await signIn(formValue);
+        console.log(data);
+        if (data && data.status && data.status.includes('success')) {
+        setIsLoggedIn(true); // update the isLoggedIn state in App
+        navigate('/');
+        console.log('Login success');
+        }
     };
 
     // ...

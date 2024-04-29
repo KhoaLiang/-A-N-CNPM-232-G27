@@ -12,3 +12,14 @@ export const signIn = async (formValue) => {
   });
   return res.data;
 };
+
+export const logOut = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/auth/logout`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
