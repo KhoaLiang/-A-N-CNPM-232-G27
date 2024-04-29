@@ -163,6 +163,28 @@ router.post('/device/delete', homeController.deleteDevice)
 
 /**
  * @swagger
+ * /room/delete:
+ *   post:
+ *     summary: Delete a room and all devices in it
+ *     tags: [Home]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                  type: number
+ *     responses:
+ *       200:
+ *         description:  Delete a room and all devices in it successful
+ */
+
+router.post('/room/delete', homeController.deleteRoom)
+
+/**
+ * @swagger
  * /device/toggle:
  *   post:
  *     summary: Turn on/off a device

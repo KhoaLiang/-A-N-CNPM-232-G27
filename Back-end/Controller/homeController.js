@@ -8,30 +8,33 @@ const Stat = require('../Models/statisticModel.js')
 const { genId, updateStat } = require('./Utils.js')
 
 exports.show = async (req, res, next) => {
-  const  room  = 'A'; //req.query
-  const rooms = await Room.find({}, 'name id')
-  let currentRoomId
-  if (room !== 'A') {
-    for (let i = 0; i < rooms.length; i++) {
-      if (rooms[i].name.toLowerCase().split(' ').join('-') === room) {
-        currentRoomId = rooms[i].id
-        break
+  try {
+    const room = 'A' //req.query
+    const rooms = await Room.find({}, 'name id')
+    let currentRoomId
+    if (room !== 'A') {
+      for (let i = 0; i < rooms.length; i++) {
+        if (rooms[i].name.toLowerCase().split(' ').join('-') === room) {
+          currentRoomId = rooms[i].id
+          break
+        }
       }
+    } else {
+      currentRoomId = rooms[0].id
     }
-  } else {
-    currentRoomId = rooms[0].id
+
+    const devices = await Device.find({ roomId: currentRoomId })
+    res.status(200).json({
+      rooms: rooms,
+      currentRoomId: currentRoomId,
+      devices: devices,
+      temp: '--',
+      humi: '--',
+    })
+  } catch (err) {
+    console.log(err)
+    next(err)
   }
-
-  const devices = await Device.find({ roomId: currentRoomId })
-  res.status(200).json({
-    rooms: rooms,
-    currentRoomId: currentRoomId,
-    devices: devices,
-    temp: '--',
-    humi: '--',
-  })
-
-  if (err) () => console.log(err)
 }
 
 exports.addNewRoom = (req, res, next) => {
@@ -217,4 +220,17 @@ exports.deleteDevice = (req, res, next) => {
         .catch((err) => console.log(err))
     })
     .catch((err) => console.log(err))
+}
+
+exports.deleteRoom = (req, res, next) => {
+  const _id = req.body.id
+  Room.findOneAndDelete({ id: _id }).then((_) => {
+    Device.deleteMany({ roomId: _id })
+      .then((_) => {
+        res.status(200).json({
+          status: 200,
+        })
+      })
+      .catch((err) => console.log(err))
+  })
 }
