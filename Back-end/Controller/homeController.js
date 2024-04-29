@@ -4,6 +4,7 @@ const Device = require('../Models/deviceModel.js')
 const Port = require('../Models/portsModel.js')
 const User = require('../Models/userModel.js')
 const Stat = require('../Models/statisticModel.js')
+const mqttController = require('./mqttController.js')
 
 const { genId, updateStat } = require('./Utils.js')
 
@@ -232,5 +233,13 @@ exports.deleteRoom = (req, res, next) => {
         })
       })
       .catch((err) => console.log(err))
+  })
+}
+
+exports.test = (req, res, next) => {
+  mqttController.turnOnlight1(req, res)
+  res.status(200).json({
+    status: 200,
+    message: 'Turn on Light 1 successfully',
   })
 }

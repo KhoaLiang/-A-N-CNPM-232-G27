@@ -209,4 +209,16 @@ router.post('/room/delete', homeController.deleteRoom)
 
 router.post('/device/toggle', homeController.toggleDevice)
 
+/**
+ * @swagger
+ * /TurnOn:
+ *   get:
+ *     summary:  Turn on light 1
+ *     tags: [Home]
+ *     responses:
+ *       200:
+ *         description:   Turn on light 1
+ */
+router.get('/TurnOn', homeController.test)
+
 module.exports = router
