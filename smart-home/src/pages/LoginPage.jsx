@@ -34,7 +34,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
                     <form className='col-10 col-md-6 col-lg-4 border border-dark p-3 rounder-border login-form' onSubmit={handleSubmit}>
                         <img src={logo} alt="" className='logo'/>
                         <div className='form-group m-3'>
-                            <input type='text' className='form-control' id='username' placeholder='Enter Username' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type='text' className='form-control' id='username' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className='form-group m-3'>
                             <input type='password' className='form-control' id='password' placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
