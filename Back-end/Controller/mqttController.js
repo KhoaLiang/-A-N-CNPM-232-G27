@@ -1,7 +1,89 @@
 const mqtt = require('mqtt')
 const dotenv = require('dotenv')
+const axios = require('axios')
 
 dotenv.config({ path: '../config.env' })
+
+exports.getTemperature = (req, res) => {
+  const AIO_USERNAME = process.env.AIO_USERNAME
+  const AIO_KEY = process.env.AIO_KEY
+
+  // MQTT Client Setup
+  const client = mqtt.connect('mqtt://io.adafruit.com', {
+    username: AIO_USERNAME,
+    password: AIO_KEY,
+  })
+  const AIO_FEED = 'cambien1'
+  axios
+    .get(
+      `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${AIO_FEED}/data/last`,
+      {
+        headers: {
+          'X-AIO-Key': AIO_KEY,
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data.value)
+    })
+    .catch((error) => {
+      console.error('Error occurred:', error)
+    })
+}
+
+exports.getHumidity = (req, res) => {
+  const AIO_USERNAME = process.env.AIO_USERNAME
+  const AIO_KEY = process.env.AIO_KEY
+
+  // MQTT Client Setup
+  const client = mqtt.connect('mqtt://io.adafruit.com', {
+    username: AIO_USERNAME,
+    password: AIO_KEY,
+  })
+  const AIO_FEED = 'cambien2'
+  axios
+    .get(
+      `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${AIO_FEED}/data/last`,
+      {
+        headers: {
+          'X-AIO-Key': AIO_KEY,
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data.value)
+    })
+    .catch((error) => {
+      console.error('Error occurred:', error)
+    })
+}
+
+exports.getBrightness = (req, res) => {
+  const AIO_USERNAME = process.env.AIO_USERNAME
+  const AIO_KEY = process.env.AIO_KEY
+
+  // MQTT Client Setup
+  const client = mqtt.connect('mqtt://io.adafruit.com', {
+    username: AIO_USERNAME,
+    password: AIO_KEY,
+  })
+  const AIO_FEED = 'cambien3'
+  axios
+    .get(
+      `https://io.adafruit.com/api/v2/${AIO_USERNAME}/feeds/${AIO_FEED}/data/last`,
+      {
+        headers: {
+          'X-AIO-Key': AIO_KEY,
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data.value)
+    })
+    .catch((error) => {
+      console.error('Error occurred:', error)
+    })
+}
 
 exports.turnOnLight1 = (req, res) => {
   const AIO_USERNAME = process.env.AIO_USERNAME
