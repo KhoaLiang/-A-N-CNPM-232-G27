@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "name": "Temperature",
+    "value": "31.2"
+  },
+  {
+    "id": "2",
+    "name": "Humidity",
+    "value": "50"
+  },
+  {
+    "id": "3",
+    "name": "Brightness",
+    "value": "34"
+  }
+]

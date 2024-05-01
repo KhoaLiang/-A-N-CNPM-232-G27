@@ -7,6 +7,7 @@ const Port = require('./../Models/portsModel')
 const Room = require('./../Models/roomModel')
 const Statistic = require('./../Models/statisticModel')
 const User = require('./../Models/userModel')
+const Sensor = require('./../Models/sensorModel')
 
 dotenv.config({ path: './config.env' })
 
@@ -35,6 +36,9 @@ const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'))
 const statistics = JSON.parse(
   fs.readFileSync(`${__dirname}/statistics.json`, 'utf-8')
 )
+const sensors = JSON.parse(
+  fs.readFileSync(`${__dirname}/sensors.json`, 'utf-8')
+)
 
 // IMPORT DATA INTO DB
 const importData = async () => {
@@ -42,9 +46,19 @@ const importData = async () => {
     await Device.create(devices)
     await Port.create(ports)
     await Room.create(rooms)
-    // await Statistic.create(statistics)
     await User.create(users)
     await Statistic.create(statistics)
+    await Sensor.create(sensors)
+    console.log('Data successfully loaded!')
+  } catch (err) {
+    console.log(err)
+  }
+  process.exit()
+}
+
+const importData2 = async () => {
+  try {
+    await Sensor.create(sensors)
     console.log('Data successfully loaded!')
   } catch (err) {
     console.log(err)
@@ -60,6 +74,7 @@ const deleteData = async () => {
     await Room.deleteMany()
     await Statistic.deleteMany()
     await User.deleteMany()
+    await Sensor.deleteMany()
     console.log('Data successfully deleted!')
   } catch (err) {
     console.log(err)
