@@ -89,4 +89,29 @@ router.post('/updateProfile', settingController.updateProfile)
 
 router.post('/changeAddress', settingController.changeAddress)
 
+/**
+ * @swagger
+ * /setting/changePassword:
+ *   post:
+ *     summary: Change password
+ *     tags: [Setting]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               passwordCurrent:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Change password successfully
+ */
+
+router.post('/changePassword', settingController.updatePassword)
 module.exports = router

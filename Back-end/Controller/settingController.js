@@ -1,6 +1,7 @@
 const session = require('express-session')
 const Device = require('../Models/deviceModel.js')
 const User = require('../Models/userModel.js')
+const jwt = require('jsonwebtoken')
 
 exports.show = (req, res, next) => {
   User.find()
@@ -25,6 +26,29 @@ exports.updateProfile = (req, res, next) => {
     .catch((err) => console.log(err))
 }
 
+exports.updatePassword = async (req, res) => {
+  const { email, passwordCurrent, password } = req.body
+
+  // Find the user
+  const user = await User.findOne({ email })
+
+  // Check if the current password is correct
+  if (!user || !(passwordCurrent === user.password)) {
+    throw new Error('Incorrect email or password')
+  }
+
+  // Update the password and name
+  user.password = password
+  await user.save()
+
+  // Send response
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user,
+    },
+  })
+}
 exports.offEnergy = (req, res, next) => {
   Device.find({ status: true })
     .then((result) => {
