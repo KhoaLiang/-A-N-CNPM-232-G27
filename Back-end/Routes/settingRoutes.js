@@ -52,7 +52,7 @@ router.get('/offEnergy', settingController.offEnergy)
  *             properties:
  *               email:
  *                 type: string
- *               password:
+ *               name:
  *                 type: string
  *               phone:  
  *                 type: string
