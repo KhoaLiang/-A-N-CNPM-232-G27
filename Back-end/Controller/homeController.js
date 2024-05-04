@@ -151,6 +151,13 @@ exports.toggleDevice = async (req, res, next) => {
   const { deviceId, deviceType, status } = req.body
   // Turn off
   if (status === 'false') {
+    if (deviceId === 1) {
+      mqttController.turnOffLight1(req, res)
+    } else if (deviceId === 2) {
+      mqttController.turnOffLight2(req, res)
+    } else if (deviceId === 3) {
+      mqttController.turnOffFan(req, res)
+    }
     await Device.findOne({ id: deviceId })
       .then((result) => {
         const currentTime = new Date()
@@ -177,7 +184,8 @@ exports.toggleDevice = async (req, res, next) => {
                 })
               }
             } catch (error) {
-              res.status(200).json({
+              console.log(error)
+              res.status(500).json({
                 status: 500,
                 message: error,
               })
@@ -195,6 +203,13 @@ exports.toggleDevice = async (req, res, next) => {
       }
     )
       .then((result) => {
+        if (deviceId === 1) {
+          mqttController.turnOnLight1(req, res)
+        } else if (deviceId === 2) {
+          mqttController.turnOnLight2(req, res)
+        } else if (deviceId === 3) {
+          mqttController.turnOnFan(req, res)
+        }
         res.status(200).json({
           status: 200,
           data: result,

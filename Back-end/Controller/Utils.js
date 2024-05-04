@@ -26,40 +26,40 @@ exports.updateStat = async (deviceId, usedTime, lastUse) => {
   }
 
   switch (_time.getDay()) {
-    case 1:
+    case 0: // Sunday
+      return await Stat.findOneAndUpdate(
+        { deviceId: deviceId },
+        { $inc: { 'data.6': usedTime } }
+      ).exec()
+    case 1: // Monday
       return await Stat.findOneAndUpdate(
         { deviceId: deviceId },
         { $inc: { 'data.0': usedTime } }
       ).exec()
-    case 2:
+    case 2: // Tuesday
       return await Stat.findOneAndUpdate(
         { deviceId: deviceId },
         { $inc: { 'data.1': usedTime } }
       ).exec()
-    case 3:
+    case 3: // Wednesday
       return await Stat.findOneAndUpdate(
         { deviceId: deviceId },
         { $inc: { 'data.2': usedTime } }
       ).exec()
-    case 4:
+    case 4: // Thursday
       return await Stat.findOneAndUpdate(
         { deviceId: deviceId },
         { $inc: { 'data.3': usedTime } }
       ).exec()
-    case 5:
+    case 5: // Friday
       return await Stat.findOneAndUpdate(
         { deviceId: deviceId },
         { $inc: { 'data.4': usedTime } }
       ).exec()
-    case 6:
+    case 6: // Saturday
       return await Stat.findOneAndUpdate(
         { deviceId: deviceId },
         { $inc: { 'data.5': usedTime } }
-      ).exec()
-    case 7:
-      return await Stat.findOneAndUpdate(
-        { deviceId: deviceId },
-        { $inc: { 'data.6': usedTime } }
       ).exec()
     default:
       throw new Error('Invalid day')
