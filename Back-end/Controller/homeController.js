@@ -151,7 +151,7 @@ exports.toggleDevice = async (req, res, next) => {
   const { deviceId, deviceType, status } = req.body
   // Turn off
   if (status === 'false') {
-    Device.findOne({ id: deviceId })
+    await Device.findOne({ id: deviceId })
       .then((result) => {
         const currentTime = new Date()
         const usedTime = currentTime - result.lastUse

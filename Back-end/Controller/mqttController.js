@@ -1,13 +1,14 @@
 const mqtt = require('mqtt')
 const dotenv = require('dotenv')
 const axios = require('axios')
+const Sensor = require('../Models/sensorModel')
 
 dotenv.config({ path: '../config.env' })
 
-exports.getTemperature = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
+const AIO_USERNAME = 'Vaionic4711'
+const AIO_KEY = 'aio_amgu07zCFWO2splaLMVXgNg1c63y'
 
+exports.getTemperature = async (req, res) => {
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
@@ -23,18 +24,24 @@ exports.getTemperature = (req, res) => {
         },
       }
     )
-    .then((response) => {
+    .then(async (response) => {
       console.log(response.data.value)
+      const updatedSensor = await Sensor.findOneAndUpdate(
+        { id: 1 },
+        { value: response.data.value }
+      )
+
+      res.status(200).json(updatedSensor)
     })
     .catch((error) => {
       console.error('Error occurred:', error)
+
+      // Send an HTTP response with status 500 and the error message
+      res.status(500).send(error.message)
     })
 }
 
-exports.getHumidity = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
-
+exports.getHumidity = async (req, res) => {
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
@@ -50,18 +57,21 @@ exports.getHumidity = (req, res) => {
         },
       }
     )
-    .then((response) => {
+    .then(async (response) => {
       console.log(response.data.value)
+      const updatedSensor = await Sensor.findOneAndUpdate(
+        { id: 2 },
+        { value: response.data.value }
+      )
+
+      res.status(200).json(updatedSensor)
     })
     .catch((error) => {
       console.error('Error occurred:', error)
     })
 }
 
-exports.getBrightness = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
-
+exports.getBrightness = async (req, res) => {
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
@@ -77,8 +87,14 @@ exports.getBrightness = (req, res) => {
         },
       }
     )
-    .then((response) => {
+    .then(async (response) => {
       console.log(response.data.value)
+      const updatedSensor = await Sensor.findOneAndUpdate(
+        { id: 3 },
+        { value: response.data.value }
+      )
+
+      res.status(200).json(updatedSensor)
     })
     .catch((error) => {
       console.error('Error occurred:', error)
@@ -86,9 +102,6 @@ exports.getBrightness = (req, res) => {
 }
 
 exports.turnOnLight1 = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
-
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
@@ -112,7 +125,6 @@ exports.turnOnLight1 = (req, res) => {
   })
 
   client.publish(`${AIO_USERNAME}/feeds/${AIO_FEED}`, `1`)
-
   // Handle errors
   client.on('error', (err) => {
     console.error('Error occurred:', err)
@@ -120,8 +132,6 @@ exports.turnOnLight1 = (req, res) => {
 }
 
 exports.turnOffLight1 = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
     password: AIO_KEY,
@@ -152,9 +162,6 @@ exports.turnOffLight1 = (req, res) => {
 }
 
 exports.turnOnLight2 = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
-
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
@@ -186,8 +193,6 @@ exports.turnOnLight2 = (req, res) => {
 }
 
 exports.turnOffLight2 = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
     password: AIO_KEY,
@@ -218,9 +223,6 @@ exports.turnOffLight2 = (req, res) => {
 }
 
 exports.turnOnFan = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
-
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,
@@ -252,9 +254,6 @@ exports.turnOnFan = (req, res) => {
 }
 
 exports.turnOffFan = (req, res) => {
-  const AIO_USERNAME = process.env.AIO_USERNAME
-  const AIO_KEY = process.env.AIO_KEY
-
   // MQTT Client Setup
   const client = mqtt.connect('mqtt://io.adafruit.com', {
     username: AIO_USERNAME,

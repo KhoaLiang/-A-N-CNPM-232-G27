@@ -1,6 +1,7 @@
 const express = require('express')
 const settingController = require('../Controller/settingController.js')
 const homeController = require('../Controller/homeController.js')
+const mqttController = require('../Controller/mqttController.js')
 
 const router = express.Router()
 
@@ -209,16 +210,52 @@ router.post('/room/delete', homeController.deleteRoom)
 
 router.post('/device/toggle', homeController.toggleDevice)
 
+// /**
+//  * @swagger
+//  * /TurnOn:
+//  *   get:
+//  *     summary:  Turn on light 1
+//  *     tags: [Home]
+//  *     responses:
+//  *       200:
+//  *         description:   Turn on light 1
+//  */
+// router.get('/TurnOn', homeController.turnOnLight1)
+
 /**
  * @swagger
- * /TurnOn:
+ * /temperature:
  *   get:
- *     summary:  Turn on light 1
+ *     summary:  Get Temperature of home
  *     tags: [Home]
  *     responses:
  *       200:
- *         description:   Turn on light 1
+ *         description:   Get Temperature of home
  */
-router.get('/TurnOn', homeController.test)
+router.get('/temperature', mqttController.getTemperature)
+
+/**
+ * @swagger
+ * /humidity:
+ *   get:
+ *     summary:  Get Temperature of home
+ *     tags: [Home]
+ *     responses:
+ *       200:
+ *         description:   Get Temperature of home
+ */
+router.get('/humidity', mqttController.getHumidity)
+
+/**
+ * @swagger
+ * /brightness:
+ *   get:
+ *     summary:  Get Temperature of home
+ *     tags: [Home]
+ *     responses:
+ *       200:
+ *         description:   Get Temperature of home
+ */
+router.get('/brightness', mqttController.getBrightness)
 
 module.exports = router
