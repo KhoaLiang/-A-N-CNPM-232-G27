@@ -2,20 +2,40 @@ const session = require('express-session')
 const Device = require('../Models/deviceModel.js')
 const User = require('../Models/userModel.js')
 const jwt = require('jsonwebtoken')
+const cookieParser = require('cookie-parser')
+const { promisify } = require('util')
 
-exports.show = (req, res, next) => {
-  User.find()
-    .then((user) => {
-      res.status(200).json({
-        user: user[0],
-      })
+exports.show = async (req, res, next) => {
+  if (!req.cookies.jwt) {
+    return res
+      .status(401)
+      .json('You are not logged in! Please log in to get access.')
+  }
+
+  let token = req.cookies.jwt
+
+  const decoded = await promisify(jwt.verify)(
+    token,
+    'my-ultra-secure-and-ultra-long-secret'
+  )
+
+  const currentUser = await User.findById(decoded.id)
+  if (!currentUser) {
+    return res.status(401).json({
+      message: 'The user belonging to this token does no longer exist.',
     })
-    .catch((err) => console.log(err))
+  }
+  res.status(200).json({
+    user: currentUser,
+  })
 }
 
 exports.updateProfile = (req, res, next) => {
-  const { name, phone, email } = req.body
-  User.findOneAndUpdate({ email: email }, { name: name, phone: phone })
+  const { name, phone, email, image } = req.body
+  User.findOneAndUpdate(
+    { email: email },
+    { name: name, phone: phone, image: image }
+  )
     .then((result) => {
       res.status(200).json({
         status: 200,

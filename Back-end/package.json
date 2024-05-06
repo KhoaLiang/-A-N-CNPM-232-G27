@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.8",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -23,6 +24,7 @@
     "nodemon": "^3.1.0",
     "readable-stream": "^4.5.2",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "util": "^0.12.5"
   }
 }

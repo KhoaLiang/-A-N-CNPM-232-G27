@@ -2,6 +2,7 @@ const express = require('express')
 
 const isLoggedIn = require('../Controller/isLoggedIn.js')
 const settingController = require('../Controller/settingController.js')
+const userController = require('../Controller/userController.js')
 
 const router = express.Router()
 
@@ -55,6 +56,8 @@ router.get('/offEnergy', settingController.offEnergy)
  *               name:
  *                 type: string
  *               phone:  
+ *                 type: string
+ *               image:
  *                 type: string
  *     responses:
  *       200:

@@ -4,6 +4,7 @@
     "name": "Dang1",
     "email": "Dang1@gmail.com",
     "password": "Dang@123",
+    "image": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
     "phone": "0987469347",
     "address": "Quan 9, Thanh pho Ho Chi Minh"
   },
@@ -12,6 +13,7 @@
     "name": "Dang2",
     "email": "Dang2@gmail.com",
     "password": "Dang@123",
+    "image": "https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
     "phone": "0987469347",
     "address": "Quan 9, Thanh pho Ho Chi Minh"
   }

@@ -13,8 +13,10 @@ const settingRouter = require('./Routes/settingRoutes')
 const authRouter = require('./Routes/authRoutes')
 const homeRouter = require('./Routes/homeRoutes')
 const statisticRouter = require('./Routes/statisticRoutes')
+const cookieParser = require('cookie-parser')
 
 const app = express()
+app.use(cookieParser())
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 const port = 4000
 

@@ -3,6 +3,8 @@ const Room = require('../Models/roomModel.js')
 const Device = require('../Models/deviceModel.js')
 const User = require('../Models/userModel.js')
 const jwt = require('jsonwebtoken')
+const { promisify } = require('util')
+const cookieParser = require('cookie-parser')
 
 // Test
 
@@ -36,10 +38,25 @@ const createSendToken = (user, statusCode, res) => {
 }
 
 exports.show = async (req, res, next) => {
-  const email = req.body.email
-  const user = await User.findOne({ email: email })
+  if (!req.cookies.jwt) {
+    return res
+      .status(401)
+      .json('You are not logged in! Please log in to get access.')
+  }
+
+  console.log(req.cookies.jwt)
+  let token = req.cookies.jwt
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
+
+  console.log(decoded)
+  const currentUser = await User.findById(decoded.id)
+  if (!currentUser) {
+    return res.status(401).json({
+      message: 'The user belonging to this token does no longer exist.',
+    })
+  }
   res.status(200).json({
-    user: user,
+    user: currentUser,
   })
 }
 
