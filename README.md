@@ -1,3 +1,8 @@
+## Adafruit
+https://io.adafruit.com/Vaionic4711/dashboards/operating-screen
+## BE api tests
+http://localhost:4000/api-docs/#/
+
 # Project Name
 
 A brief description of your project.

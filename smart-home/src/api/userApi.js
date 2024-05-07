@@ -60,3 +60,14 @@ export const deleteRoom = async (roomID) => {
   });
   return res.data;
 };
+
+export const getAllDevices = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/device/all`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
