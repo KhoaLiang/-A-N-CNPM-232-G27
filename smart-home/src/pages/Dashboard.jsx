@@ -3,7 +3,7 @@ import PlusOne from '../img/PlusOne.png';
 import ExampleDevice from '../img/example-device.png';
 import AddDevice from '../img/AddDevice.png';
 import '../css/Dashboard.css';
-import {getRoom, addRoom, deleteRoom, getAllDevices} from '../api/userApi';
+import {getRoom, addRoom, deleteRoom, getAllDevices, toggleDevice, addDevice, deleteDevice} from '../api/userApi';
 
 const Dashboard = () => {
     const [show, setShow] = useState(false);
@@ -46,17 +46,6 @@ const Dashboard = () => {
     };
     //device data
     const [deviceData, setDeviceData] = useState(null); //how to access all devices
-    const fetchDeviceData = async () => {
-      try {
-        const dData = await getAllDevices();
-        setDeviceData(dData.data);
-      } catch (error) {
-        console.error("Failed to fetch device data: ", error);
-      }
-    };
-    useEffect(() => {
-      console.log("Device data: ", deviceData);
-    }, [deviceData]);
     const [showDeviceModal, setShowDeviceModal] = useState(false);
     const [deviceName, setDeviceName] = useState('');
     const [deviceType, setDeviceType] = useState('');
@@ -75,45 +64,76 @@ const Dashboard = () => {
         setDeviceId(event.target.value);
     };
 
-    const handleDeviceFormSubmit = (event) => {
-        event.preventDefault();
-        setDevices([...devices, { name: deviceName, type: deviceType, Id: deviceId }]);
-        setDeviceName('');
-        setDeviceType('');
-        setDeviceId(1);
-        setShowDeviceModal(false);
-    };
-
     //initial fetch
     useEffect(() => {
       fetchRoomData();
     }, []);
-    function renderDevices() {
-      if (deviceData !== null) {
-        const filteredDeviceData = deviceData ? deviceData.filter(device => device.roomId === id) : [];
-        return filteredDeviceData.map((device, index) => (
-          <div key={index} className="card border border-black m-2" style={{width: "12rem"}} id="device-in-room">
-            <div className="card-body">
-              <label className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" id={`flexSwitchCheckDefault${index}`} />
-                <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${index}`}>On/Off</label>
-              </label>
-            </div>
-            <div className="card-body">
-              <img src={ExampleDevice} className="card-img device-icon border border-black" />
-              <h5 className="card-title">{device.name}</h5>
-              <p className="card-text">{device.type}</p>
-              <p className="card-text">Device ID: {device.id}</p>
-            </div>
-          </div>
-        ));
-      } else {
-        return <p>No devices found for this room.</p>;
-      }
-    };
+    // Add a new state variable for the devices of the selected room
+    const [selectedRoomDevices, setSelectedRoomDevices] = useState([]);
+
     useEffect(() => {
+      const fetchDeviceData = async () => {
+        
+        try {
+          const dData = await getAllDevices();
+          setDeviceData(dData.data);
+
+          // Filter and map the devices as soon as deviceData is updated
+          
+
+          //const filteredDeviceData = deviceData ? deviceData.filter(device => device.roomId === id) : [];
+          const filteredDeviceData = [];
+          if(deviceData === null) return;
+          for(let i = 0; i < deviceData.length; i++){
+            if(deviceData[i].roomId == id){
+              filteredDeviceData.push(deviceData[i]);
+            }
+          }
+          setSelectedRoomDevices(filteredDeviceData.map((device, index) => (
+            <div key={index} className="card border border-black m-2" style={{width: "12rem"}} id="device-in-room">
+              <div className="card-body">
+                <label className="form-check form-switch">
+                  <input className="form-check-input" type="checkbox" id={`flexSwitchCheckDefault${index}`} 
+                    onChange={async (e) => {
+                      const formValue = {
+                          deviceId: device.id,
+                          deviceType: device.type,
+                          status: e.target.checked.toString()
+                      };
+                      console.log("Toggle device: ", formValue);
+                      await toggleDevice(formValue);
+                    }}
+                  />
+                  <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${index}`}>On/Off</label>
+                </label>
+              </div>
+              <div className="card-body">
+                <img src={ExampleDevice} className="card-img device-icon border border-black" />
+                <h5 className="card-title">{device.name}</h5>
+                <p className="card-text">{device.type}</p>
+                <p className="card-text">Device ID: {device.id}</p>
+                <p className='btn btn-outline-danger' 
+                    onClick={async (e) => {
+                      if (window.confirm("Are you sure you want to delete this device?")) {
+                        const formValue = {
+                          id: device.id
+                        };
+                        const delete_result = await deleteDevice(formValue);
+                        window.location.reload();
+                      }
+                    }}>
+                      Delete
+                </p>
+              </div>
+            </div>
+          )));
+
+        } catch (error) {
+          console.error("Failed to fetch device data: ", error);
+        }
+      };
       fetchDeviceData();
-    }, [id]); // Add id as a dependency
+    }, [id]); // Add id as a dependency to the useEffect hook
     return (
     <div>
         <div class="container">
@@ -159,43 +179,10 @@ const Dashboard = () => {
         
           {/* begin new row */}
           <div className="row justify-content-center align-items-center g-2 mt-3">
-              {/* fake device map test */}
-              {devices.map((device, index) => (
-                <div key={index} className="card border border-black m-2" style={{width: "12rem"}} id="device-in-room">
-                  <div className="card-body">
-                    <label className="form-check form-switch">
-                      <input className="form-check-input" type="checkbox" id={`flexSwitchCheckDefault${index}`} />
-                      <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${index}`}>On/Off</label>
-                    </label>
-                  </div>
-                  <div className="card-body">
-                    <img src={ExampleDevice} className="card-img device-icon border border-black" />
-                    <h5 className="card-title">{device.name}</h5>
-                    <p className="card-text">{device.type}</p>
-                    <p className="card-text">Device ID: {device.Id}</p>
-                  </div>
-                </div>
-              ))}
-              {/* real device render */}
-              {/* {deviceData !== null ? deviceData.map((device, index) => (
-                <div key={index} className="card border border-black m-2" style={{width: "12rem"}} id="device-in-room">
-                  <div className="card-body">
-                    <label className="form-check form-switch">
-                      <input className="form-check-input" type="checkbox" id={`flexSwitchCheckDefault${index}`} />
-                      <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${index}`}>On/Off</label>
-                    </label>
-                  </div>
-                  <div className="card-body">
-                    <img src={ExampleDevice} className="card-img device-icon border border-black" />
-                    <h5 className="card-title">{device.name}</h5>
-                    <p className="card-text">{device.type}</p>
-                    <p className="card-text">Device ID: {device.id}</p>
-                  </div>
-                </div>
-              )) : null} */}
-              <span id="device-list" key={id}>
-               {renderDevices()}
-              </span>
+              {/* device list */}
+
+               {selectedRoomDevices}
+
               {/* add device */}
               <div className="card border border-black m-2" style={{width: "7rem"}} onClick={() => setShowDeviceModal(true)}>
                 <img src={AddDevice} className="card-img device-icon" id="add-device"/>
@@ -210,7 +197,17 @@ const Dashboard = () => {
                         <button type="button" className="btn-close" onClick={() => setShowDeviceModal(false)}></button>
                       </div>
                       <div className="modal-body">
-                        <form onSubmit={handleDeviceFormSubmit}>
+                        <form onSubmit={async (e) => {
+                            const formValue = {
+                                deviceName: deviceName,
+                                deviceId: deviceId,
+                                deviceType: deviceType,
+                                roomId: id
+                            };
+                            console.log("Toggle device: ", formValue);
+                            const add_device_result= await addDevice(formValue);
+                            console.log("Add device result: ", add_device_result);
+                          }}>
                           <div className="mb-3">
                             <label className="form-label">Device name</label>
                             <input type="text" className="form-control" value={deviceName} onChange={handleDeviceNameChange} />

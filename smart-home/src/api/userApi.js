@@ -71,3 +71,40 @@ export const getAllDevices = async () => {
   });
   return res.data;
 };
+
+export const toggleDevice = async (formValue) => {
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:4000/device/toggle`,
+    data: formValue,
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const addDevice = async (formValue) => {
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:4000/device/add`,
+    data: formValue,
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const deleteDevice = async (formValue) => {
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:4000/device/delete`,
+    data: formValue,
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },withCredentials: true,
+  });
+  return res.data;
+};
