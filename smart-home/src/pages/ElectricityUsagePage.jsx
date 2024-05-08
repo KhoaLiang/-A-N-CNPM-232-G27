@@ -1,62 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import kwh from "../img/kwh.png";
 import cost from "../img/es_cost.png";
 import "../css/ElectricityUsage.css";
-
+import { getRoomElec } from '../api/userApi';
 const ElectricityUsagePage = () => {
   // Your code here
-
+  const [RoomsElec, setRoomsElec] = useState([]);
+  const fetchRoomElec = async () => {
+    try {
+      const data = await getRoomElec();
+      setRoomsElec(data.roomKWh);
+    } catch (error) {
+      console.error("Failed to fetch electricity usage data: ", error);
+    }
+  };
+  useEffect(() => {
+    const roomElecIntervalId = setInterval(fetchRoomElec, 3000);
+    return () => {
+      clearInterval(roomElecIntervalId);
+    };
+  }, []);
+  useEffect(() => {
+    console.log(RoomsElec);
+  }, [RoomsElec]);
   return (
     <div className="container row justify-content-center align-items-center d-flex vh-150 ">
-      <div className="room row">
-        <div className="guest_room justify-content-left align-items-center col-6">
-          <h1>20</h1>
-          <div className="mx-1">
-            <img src={kwh} alt="" className="logo-nav" />
+      <div className="room_row row">
+        {RoomsElec.map((room, index) => (
+          <div className={`room justify-content-${index % 2 === 0 ? 'left' : 'right'} align-items-center col-6`} key={index}>
+            <h1>{room.total === null ? 0 : room.total}</h1>
+            <div className="mx-1">
+              <img src={kwh} alt="" className="logo-nav" />
+            </div>
+            <h3>{room.roomName}</h3>
           </div>
-          <h3>GUEST ROOM</h3>
-        </div>
-
-        <div className="dining_room justify-content-right align-items-center col-6">
-          <h1>50</h1>
-          <div className="mx-1">
-            <img src={kwh} alt="" className="logo-nav" />
-          </div>
-          <h3>DINING ROOM</h3>
-        </div>
-
-        <div className="bed_room justify-content-left align-items-center col-6">
-          <h1>60</h1>
-          <div className="mx-1">
-            <img src={kwh} alt="" className="logo-nav" />
-          </div>
-          <h3>BED ROOM</h3>
-        </div>
-
-        <div className="bad_room justify-content-right align-items-center col-6">
-          <h1>25</h1>
-          <div className="mx-1">
-            <img src={kwh} alt="" className="logo-nav" />
-          </div>
-          <h3>BAD ROOM</h3>
-        </div>
+        ))}
       </div>
       <div className="ma"></div>
-      <div className="CostAndKwh row mt-5">
-        <div className="cost col justify-content-center align-items-center">
-          <div className="1">
-            <img src={cost} alt="" className="logo-nav" />
-          </div>
-          <h3>ESTIMIMATED COST</h3>
-        </div>
-
-        <div className="kwh col justify-content-center align-items-center">
-          <div className="2">
-            <img src={kwh} alt="" className="logo-nav" />
-          </div>
-          <h3>TOTAL KWH</h3>
-        </div>
-      </div>
     </div>
   );
 };

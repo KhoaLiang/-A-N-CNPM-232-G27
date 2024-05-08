@@ -108,3 +108,43 @@ export const deleteDevice = async (formValue) => {
   });
   return res.data;
 };
+export const getTemperature = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/temperature`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const getHumidity = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/humidity`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const getLight = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/brightness`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const getRoomElec = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/statistic`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
