@@ -28,7 +28,7 @@ const ElectricityUsagePage = () => {
       <div className="room_row row">
         {RoomsElec.map((room, index) => (
           <div className={`room justify-content-${index % 2 === 0 ? 'left' : 'right'} align-items-center col-6`} key={index}>
-            <h1>{room.total === null ? 0 : room.total}</h1>
+            <h1>{room.total === null ? 0 : (room.total).toFixed(2)}</h1>
             <div className="mx-1">
               <img src={kwh} alt="" className="logo-nav" />
             </div>

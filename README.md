@@ -3,6 +3,10 @@ https://io.adafruit.com/Vaionic4711/dashboards/operating-screen
 ## BE api tests
 http://localhost:4000/api-docs/#/
 
+## Image link for testing
+https://i1.sndcdn.com/avatars-000552492615-ti7o15-t500x500.jpg
+https://th.bing.com/th/id/R.63900acbf4e17469274452eea8999db7?rik=yvAfsAq60yC6Tw&pid=ImgRaw&r=0
+
 # Project Name
 
 A brief description of your project.

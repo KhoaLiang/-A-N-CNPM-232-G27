@@ -21,3 +21,7 @@
 .imgchange img {
   height: 170px;
 }
+.active-column {
+  background-color: blue;
+  color: white;
+}

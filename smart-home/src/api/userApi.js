@@ -148,3 +148,50 @@ export const getRoomElec = async () => {
   });
   return res.data;
 };
+
+export const getInfo = async () => {
+  const res = await axios({
+    method: "get",
+    url: `http://localhost:4000/setting`,
+    headers: { 
+      "Accept": "*/*"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const updateProfile = async (formValue) => {
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:4000/setting/updateProfile`,
+    data: formValue,
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const updatePassword = async (formValue) => {
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:4000/setting/changePassword`,
+    data: formValue,
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },withCredentials: true,
+  });
+  return res.data;
+};
+export const updateAddress = async (formValue) => {
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:4000/setting/changeAddress`,
+    data: formValue,
+    headers: { 
+      "Accept": "*/*" ,
+      "Content-Type": "application/json"
+  },withCredentials: true,
+  });
+  return res.data;
+};

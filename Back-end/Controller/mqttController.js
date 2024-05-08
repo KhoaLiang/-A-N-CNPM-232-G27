@@ -6,7 +6,7 @@ const Sensor = require('../Models/sensorModel')
 dotenv.config({ path: '../config.env' })
 
 const AIO_USERNAME = 'Vaionic4711'
-const AIO_KEY = 'aio_jcdb45jIs3OcrBrOCxzCoTfbBsES'
+const AIO_KEY = 'aio_QXOD55fw4rSZ01tjX6I4iJwY1Kib'
 
 exports.getTemperature = async (req, res) => {
   // MQTT Client Setup
